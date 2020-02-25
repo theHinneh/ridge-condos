@@ -1,5 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { User } from '../src/auth/auth.entity';
+import { Reservation } from '../src/reservation/reservation.entity';
 import { Rooms } from '../src/rooms/rooms.entity';
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
@@ -8,11 +9,11 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   // username: 'root',
   // password: 'theHinneh',
   // port: 3306,
-  // entities: [User, Rooms],
+  // entities: [User, Rooms, Reservation],
   // database: 'ridge-condos',
   // synchronize: true,
 
-  entities: [User, Rooms],
+  entities: [User, Rooms, Reservation],
   type: 'postgres',
   synchronize: true,
   url:
