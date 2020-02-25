@@ -13,7 +13,10 @@ export class Reservation extends BaseEntity {
   id: number;
 
   @Column()
-  numOfPeople: number;
+  children: number;
+
+  @Column()
+  adult: number;
 
   @Column()
   reservationDate: Date;
@@ -23,6 +26,9 @@ export class Reservation extends BaseEntity {
 
   @Column()
   roomNumber: string;
+
+  @Column()
+  name: string;
 
   @ManyToOne(
     type => User,

@@ -6,5 +6,8 @@ export class RoomsDto {
   category: string;
   price: number;
   description: string;
+  roomNumber: string;
+  children: number;
+  adult: number;
   status: Status;
 }

@@ -14,6 +14,9 @@ export class RoomsRepo extends Repository<Rooms> {
     room.description = profileDto.description;
     room.price = profileDto.price;
     room.status = profileDto.status;
+    room.roomNumber = profileDto.roomNumber;
+    room.children = profileDto.children;
+    room.adult = profileDto.adult;
     room.user = user;
 
     try {

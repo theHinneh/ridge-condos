@@ -1,9 +1,10 @@
 import { User } from '../auth/auth.entity';
 export class ReservationDto {
   name: string;
-  numOfPeople: number;
+  roomNumber: string;
   reservationDate: Date;
   exitDate: Date;
-  roomNumber: string;
+  children: number;
+  adult: number;
   user: User;
 }

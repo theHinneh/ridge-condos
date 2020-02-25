@@ -28,6 +28,15 @@ export class Rooms extends BaseEntity {
   @Column({ type: 'json' })
   images: any;
 
+  @Column()
+  roomNumber: string;
+
+  @Column()
+  children: number;
+
+  @Column()
+  adult: number;
+
   @ManyToOne(
     type => User,
     user => user.profile,
