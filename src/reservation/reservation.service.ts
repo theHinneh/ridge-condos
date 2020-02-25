@@ -33,10 +33,12 @@ export class ReservationService {
 
   async updateReservation(id: number, update: ReservationDto, user: User) {
     const reservation = await this.getReservationById(id);
-    reservation.exitDate = update.exitDate;
-    reservation.numOfPeople = update.numOfPeople;
+    reservation.name = update.name;
     reservation.reservationDate = update.reservationDate;
+    reservation.exitDate = update.exitDate;
     reservation.roomNumber = update.roomNumber;
+    reservation.children = update.children;
+    reservation.adult = update.adult;
     reservation.user = update.user;
 
     try {

@@ -64,14 +64,17 @@ export class ProfileService {
           .bucket(process.env.GCS_BUCKET)
           .file(p.filename)
           .delete();
-          // .catch(err => console.log(err.message));
+        // .catch(err => console.log(err.message));
       }
     });
 
+    room.roomNumber = update.roomNumber;
     room.category = update.category;
     room.description = update.description;
     room.price = update.price;
     room.status = update.status;
+    room.children = update.children;
+    room.adult = update.adult;
     room.user = user;
 
     try {

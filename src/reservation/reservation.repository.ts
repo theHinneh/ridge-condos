@@ -9,9 +9,10 @@ export class ReservationRepo extends Repository<Reservation> {
   async createReservation(reservationDto: ReservationDto, user: User) {
     const reservation = new Reservation();
 
-    reservation.user = reservationDto.user;
+    reservation.name = reservationDto.name;
     reservation.exitDate = reservationDto.exitDate;
-    reservation.numOfPeople = reservationDto.numOfPeople;
+    reservation.children = reservationDto.children;
+    reservation.adult = reservationDto.adult;
     reservation.reservationDate = reservationDto.reservationDate;
     reservation.roomNumber = reservationDto.roomNumber;
     reservation.user = user;
