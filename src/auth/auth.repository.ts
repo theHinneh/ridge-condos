@@ -11,7 +11,6 @@ import { User } from './auth.entity';
 export class UserRepo extends Repository<User> {
   async signUp(userDto: UserDto): Promise<User> {
     const { username, password } = userDto;
-
     const user = new User();
     user.username = username;
     user.salt = await bcrypt.genSalt();

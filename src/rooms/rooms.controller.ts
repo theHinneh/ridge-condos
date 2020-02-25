@@ -24,10 +24,10 @@ import { ProfileService } from './rooms.service';
 const MulterGoogleCloudStorage = require('multer-google-storage');
 
 @Controller('rooms-management')
-@UseGuards(AuthGuard())
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
 
+  @UseGuards(AuthGuard())
   @Post()
   @UseInterceptors(
     FilesInterceptor('images', 1, {
