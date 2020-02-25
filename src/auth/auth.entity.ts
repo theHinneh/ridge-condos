@@ -8,6 +8,7 @@ import {
   Unique,
 } from 'typeorm';
 import { Rooms } from '../rooms/rooms.entity';
+import { Reservation } from '../reservation/reservation.entity';
 
 @Entity()
 @Unique(['username'])
@@ -30,6 +31,13 @@ export class User extends BaseEntity {
     { eager: true },
   )
   profile: Rooms;
+
+  @OneToMany(
+    type => Reservation,
+    reservation => reservation.user,
+    { eager: true },
+  )
+  reservation: Reservation;
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);

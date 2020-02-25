@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from '../config/typeorm.config';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './rooms/rooms.module';
+import { ReservationModule } from './reservation/reservation.module';
 // tslint:disable-next-line: no-var-requires
 const MulterGoogleCloudStorage = require('multer-google-storage');
 
@@ -17,6 +18,7 @@ const MulterGoogleCloudStorage = require('multer-google-storage');
         storage: MulterGoogleCloudStorage.storageEngine(),
       }),
     }),
+    ReservationModule,
   ],
   controllers: [],
   providers: [],

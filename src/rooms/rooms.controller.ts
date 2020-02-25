@@ -44,8 +44,8 @@ export class ProfileController {
   }
 
   @Get()
-  getRoom(@GetUser() user: User) {
-    return this.profileService.getRoom(user);
+  getRoom() {
+    return this.profileService.getRoom();
   }
 
   @Patch('/:id')

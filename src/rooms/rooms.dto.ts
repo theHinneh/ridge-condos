@@ -5,6 +5,6 @@ import { Status } from './status.enum';
 export class RoomsDto {
   category: string;
   price: number;
-  duration: string;
+  description: string;
   status: Status;
 }

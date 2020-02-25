@@ -11,7 +11,7 @@ export class RoomsRepo extends Repository<Rooms> {
     const room = new Rooms();
 
     room.category = profileDto.category;
-    room.duration = profileDto.duration;
+    room.description = profileDto.description;
     room.price = profileDto.price;
     room.status = profileDto.status;
     room.user = user;
@@ -26,7 +26,7 @@ export class RoomsRepo extends Repository<Rooms> {
     }
   }
 
-  async getRooms(user: User) {
+  async getRooms() {
     const query = this.createQueryBuilder('rooms');
     const rooms = await query.getMany();
     return rooms;

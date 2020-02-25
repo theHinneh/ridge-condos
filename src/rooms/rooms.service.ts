@@ -21,8 +21,8 @@ export class ProfileService {
     return this.roomsRepo.createRoom(profileDto, user, await images);
   }
 
-  getRoom(user: User) {
-    return this.roomsRepo.getRooms(user);
+  getRoom() {
+    return this.roomsRepo.getRooms();
   }
 
   async getRoomById(id: number) {
@@ -69,7 +69,7 @@ export class ProfileService {
     });
 
     room.category = update.category;
-    room.duration = update.duration;
+    room.description = update.description;
     room.price = update.price;
     room.status = update.status;
     room.user = user;

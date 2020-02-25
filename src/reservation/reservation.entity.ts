@@ -6,31 +6,27 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from '../auth/auth.entity';
-import { Status } from './status.enum';
 
 @Entity()
-export class Rooms extends BaseEntity {
+export class Reservation extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  category: string;
+  numOfPeople: number;
 
   @Column()
-  price: number;
+  reservationDate: Date;
 
   @Column()
-  description: string;
+  exitDate: Date;
 
   @Column()
-  status: Status;
-
-  @Column({ type: 'json' })
-  images: any;
+  roomNumber: string;
 
   @ManyToOne(
     type => User,
-    user => user.profile,
+    user => user.reservation,
     { eager: false },
   )
   user: User;
