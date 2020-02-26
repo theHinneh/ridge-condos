@@ -40,6 +40,7 @@ export class ReservationService {
     reservation.children = update.children;
     reservation.adult = update.adult;
     reservation.user = update.user;
+    reservation.status = update.status;
 
     try {
       await reservation.save();
