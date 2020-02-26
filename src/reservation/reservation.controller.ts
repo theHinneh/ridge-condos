@@ -9,12 +9,15 @@ import {
   ParseIntPipe,
   Body,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { User } from '../auth/auth.entity';
 import { ReservationDto } from './reservation.dto';
 import { ReservationService } from './reservation.service';
 import { GetUser } from 'src/auth/jwt/get-user.decorator';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard())
 @Controller('reservation')
 export class ReservationController {
   constructor(private readonly reservationService: ReservationService) {}

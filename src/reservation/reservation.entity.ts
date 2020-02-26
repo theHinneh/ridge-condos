@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from '../auth/auth.entity';
+import { Status } from '../rooms/status.enum';
 
 @Entity()
 export class Reservation extends BaseEntity {
@@ -29,6 +30,9 @@ export class Reservation extends BaseEntity {
 
   @Column()
   name: string;
+
+  @Column()
+  status: Status;
 
   @ManyToOne(
     type => User,
