@@ -6,8 +6,7 @@ import { Rooms } from './rooms.entity';
 
 @EntityRepository(Rooms)
 export class RoomsRepo extends Repository<Rooms> {
-  async createRoom(profileDto: RoomsDto, user: User, images: any) {
-    const imageLink: any = await images;
+  async createRoom(profileDto: RoomsDto, user: User) {
     const room = new Rooms();
 
     room.category = profileDto.category;
@@ -20,7 +19,6 @@ export class RoomsRepo extends Repository<Rooms> {
     room.user = user;
 
     try {
-      room.images = await imageLink;
       await room.save();
       delete room.user;
       return room;

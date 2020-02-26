@@ -25,9 +25,6 @@ export class Rooms extends BaseEntity {
   @Column()
   status: Status;
 
-  @Column({ type: 'json' })
-  images: any;
-
   @Column()
   roomNumber: string;
 

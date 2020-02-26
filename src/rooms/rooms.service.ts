@@ -6,7 +6,6 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../auth/auth.entity';
-import { GCSDto } from './gcs.dto';
 import { RoomsDto } from './rooms.dto';
 import { Rooms } from './rooms.entity';
 import { RoomsRepo } from './rooms.repository';
@@ -17,8 +16,8 @@ export class ProfileService {
     @InjectRepository(RoomsRepo) private readonly roomsRepo: RoomsRepo,
   ) {}
 
-  async createRoom(user: User, profileDto: RoomsDto, images: GCSDto) {
-    return this.roomsRepo.createRoom(profileDto, user, await images);
+  async createRoom(user: User, profileDto: RoomsDto) {
+    return this.roomsRepo.createRoom(profileDto, user);
   }
 
   getRoom() {
@@ -35,14 +34,8 @@ export class ProfileService {
     return found;
   }
 
-  async updateRoom(
-    id: number,
-    update: RoomsDto,
-    images: GCSDto,
-    user: User,
-  ): Promise<Rooms> {
+  async updateRoom(id: number, update: RoomsDto, user: User): Promise<Rooms> {
     const room = await this.getRoomById(id);
-    const imageLinks: any = await images;
 
     const storage = new Storage({
       keyFilename: process.env.GCS_KEYFILE,
@@ -50,13 +43,6 @@ export class ProfileService {
 
     const oldImagePaths = [];
     const newImagePaths = [];
-
-    imageLinks.filter(p => {
-      newImagePaths.push(p);
-    });
-    room.images.filter(p => {
-      oldImagePaths.push(p);
-    });
 
     newImagePaths.forEach(async p => {
       if (oldImagePaths.indexOf(p) === -1) {
@@ -78,10 +64,6 @@ export class ProfileService {
     room.user = user;
 
     try {
-      newImagePaths.length === 0
-        ? (room.images = oldImagePaths)
-        : (room.images = newImagePaths);
-
       await room.save();
       delete room.user;
 
@@ -97,8 +79,4 @@ export class ProfileService {
       throw new NotFoundException(`Reminder with ID "${id}" not found`);
     }
   }
-
-  // customersGetRent() {
-  //   return this.profileRepo.getAllRents();
-  // }
 }
