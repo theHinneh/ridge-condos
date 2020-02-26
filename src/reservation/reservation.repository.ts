@@ -15,6 +15,7 @@ export class ReservationRepo extends Repository<Reservation> {
     reservation.adult = reservationDto.adult;
     reservation.reservationDate = reservationDto.reservationDate;
     reservation.roomNumber = reservationDto.roomNumber;
+    reservation.status = reservationDto.status;
     reservation.user = user;
 
     try {
