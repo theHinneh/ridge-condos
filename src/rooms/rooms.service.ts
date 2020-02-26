@@ -36,24 +36,6 @@ export class ProfileService {
 
   async updateRoom(id: number, update: RoomsDto, user: User): Promise<Rooms> {
     const room = await this.getRoomById(id);
-
-    const storage = new Storage({
-      keyFilename: process.env.GCS_KEYFILE,
-    });
-
-    const oldImagePaths = [];
-    const newImagePaths = [];
-
-    newImagePaths.forEach(async p => {
-      if (oldImagePaths.indexOf(p) === -1) {
-        await storage
-          .bucket(process.env.GCS_BUCKET)
-          .file(p.filename)
-          .delete();
-        // .catch(err => console.log(err.message));
-      }
-    });
-
     room.roomNumber = update.roomNumber;
     room.category = update.category;
     room.description = update.description;

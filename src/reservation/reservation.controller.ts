@@ -24,8 +24,11 @@ export class ReservationController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  async createReservation(user: User, resevrationDto: ReservationDto) {
-    this.reservationService.createReservation(user, resevrationDto);
+  async createReservation(
+    @GetUser() user: User,
+    @Body() resevrationDto: ReservationDto,
+  ) {
+    return this.reservationService.createReservation(user, resevrationDto);
   }
 
   @Get()

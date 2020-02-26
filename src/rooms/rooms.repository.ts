@@ -32,10 +32,4 @@ export class RoomsRepo extends Repository<Rooms> {
     const rooms = await query.getMany();
     return rooms;
   }
-
-  // async getAllrooms() {
-  //   const query = this.createQueryBuilder('rooms');
-  //   const rooms = await query.getMany();
-  //   return rooms;
-  // }
 }

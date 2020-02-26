@@ -1,12 +1,12 @@
 import {
+  BadRequestException,
   Injectable,
   NotFoundException,
-  BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ReservationRepo } from './reservation.repository';
-import { ReservationDto } from './reservation.dto';
 import { User } from '../auth/auth.entity';
+import { ReservationDto } from './reservation.dto';
+import { ReservationRepo } from './reservation.repository';
 
 @Injectable()
 export class ReservationService {
@@ -43,6 +43,8 @@ export class ReservationService {
 
     try {
       await reservation.save();
+      delete reservation.user;
+      return reservation;
     } catch (err) {
       throw new BadRequestException(err.message);
     }
